@@ -1,6 +1,8 @@
 package Application;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,9 +36,19 @@ public class Application {
     // Salvar no arquivo .csv todos os produtos digitados
     try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
       for (Produto produto : produtos) {
-        System.out.println(produto.getNome());
         bw.write(produto.getNome() + "," + produto.getPreco() + "," + produto.getQtd());
         bw.newLine();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    // Realizando a escrita das informaçoes na saida do sistema.
+    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+      String line = br.readLine();
+      while (line != null) {
+        System.out.println(line);
+        line = br.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
