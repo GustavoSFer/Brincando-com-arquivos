@@ -1,7 +1,9 @@
 package Application;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,23 +22,23 @@ public class Application {
 
     String path = "C:\\contato\\out.csv";
     // Salvar no arquivo .csv todos os produtos digitados
-    // try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
-    //
-    // for (int i = 0; i < qtdProduto; i++) {
-    // System.out.print("Informe o nome do " + (i + 1) + "ª produto: ");
-    // String nome = sc.next();
-    //
-    // System.out.print("Informe o preço do " + (i + 1) + "ª produto: ");
-    // double preco = sc.nextDouble();
-    // System.out.print("Informe a quantidade em estoque do " + (i + 1) + "ª produto: ");
-    // int qtdEstoque = sc.nextInt();
-    //
-    // bw.write(nome + "," + preco + "," + qtdEstoque);
-    // bw.newLine();
-    // }
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // }
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+
+      for (int i = 0; i < qtdProduto; i++) {
+        System.out.print("Informe o nome do " + (i + 1) + "ª produto: ");
+        String nome = sc.next();
+
+        System.out.print("Informe o preço do " + (i + 1) + "ª produto: ");
+        double preco = sc.nextDouble();
+        System.out.print("Informe a quantidade em estoque do " + (i + 1) + "ª produto: ");
+        int qtdEstoque = sc.nextInt();
+
+        bw.write(nome + "," + preco + "," + qtdEstoque);
+        bw.newLine();
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     // Realizando a escrita das informaçoes na saida do sistema.
     try (BufferedReader br = new BufferedReader(new FileReader(path))) {
